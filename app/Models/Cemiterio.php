@@ -18,4 +18,10 @@ class Cemiterio extends Model
         'estado',
         'cep',
     ];
+
+    // Relacionamento com Quadra
+    public function quadras()
+    {
+        return $this->hasMany(Quadra::class);
+    }
 }

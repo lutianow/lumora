@@ -3,46 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cemiterio;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreCemiterioRequest;
+use App\Http\Requests\UpdateCemiterioRequest;
 
 class CemiterioController extends Controller
 {
     public function index()
     {
-        return Cemiterio::all();
+        return Cemiterio::with('quadras')->get();
     }
 
-    public function store(Request $request)
+    public function store(StoreCemiterioRequest $request)
     {
-        $data = $request->validate([
-            'nome' => 'required|string|max:255',
-            'endereco' => 'required|string|max:255',
-            'cidade' => 'required|string|max:255',
-            'estado' => 'required|string|max:255',
-            'cep' => 'required|string|max:20',
-        ]);
-
-        $cemiterio = Cemiterio::create($data);
+        $cemiterio = Cemiterio::create($request->validated());
 
         return response()->json($cemiterio, 201);
     }
 
     public function show(Cemiterio $cemiterio)
     {
-        return $cemiterio;
+        return $cemiterio->load('quadras');
     }
 
-    public function update(Request $request, Cemiterio $cemiterio)
+    public function update(UpdateCemiterioRequest $request, Cemiterio $cemiterio)
     {
-        $data = $request->validate([
-            'nome' => 'sometimes|required|string|max:255',
-            'endereco' => 'sometimes|required|string|max:255',
-            'cidade' => 'sometimes|required|string|max:255',
-            'estado' => 'sometimes|required|string|max:255',
-            'cep' => 'sometimes|required|string|max:20',
-        ]);
-
-        $cemiterio->update($data);
+        $cemiterio->update($request->validated());
 
         return response()->json($cemiterio);
     }
@@ -54,3 +39,4 @@ class CemiterioController extends Controller
         return response()->json(null, 204);
     }
 }
+

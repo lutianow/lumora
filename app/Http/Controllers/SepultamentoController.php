@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sepultamento;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreSepultamentoRequest;
+use App\Http\Requests\UpdateSepultamentoRequest;
 
 class SepultamentoController extends Controller
 {
@@ -12,17 +13,9 @@ class SepultamentoController extends Controller
         return Sepultamento::with('jazigo.quadra.cemiterio')->get();
     }
 
-    public function store(Request $request)
+    public function store(StoreSepultamentoRequest $request)
     {
-        $data = $request->validate([
-            'jazigo_id' => 'required|exists:jazigo,id',
-            'nome_falecido' => 'required|string|max:255',
-            'data_nascimento' => 'nullable|date',
-            'data_falecimento' => 'required|date',
-            'observacoes' => 'nullable|string',
-        ]);
-
-        $sepultamento = Sepultamento::create($data);
+        $sepultamento = Sepultamento::create($request->validated());
 
         return response()->json($sepultamento, 201);
     }
@@ -32,17 +25,9 @@ class SepultamentoController extends Controller
         return $sepultamento->load('jazigo.quadra.cemiterio');
     }
 
-    public function update(Request $request, Sepultamento $sepultamento)
+    public function update(UpdateSepultamentoRequest $request, Sepultamento $sepultamento)
     {
-        $data = $request->validate([
-            'jazigo_id' => 'sometimes|required|exists:jazigo,id',
-            'nome_falecido' => 'sometimes|required|string|max:255',
-            'data_nascimento' => 'nullable|date',
-            'data_falecimento' => 'sometimes|required|date',
-            'observacoes' => 'nullable|string',
-        ]);
-
-        $sepultamento->update($data);
+        $sepultamento->update($request->validated());
 
         return response()->json($sepultamento);
     }

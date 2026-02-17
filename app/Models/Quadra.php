@@ -22,4 +22,10 @@ class Quadra extends Model
     {
         return $this->belongsTo(Cemiterio::class);
     }
+
+    // Relacionamento com Jazigo
+    public function jazigos()
+    {
+        return $this->hasMany(Jazigo::class);
+    }
 }

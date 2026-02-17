@@ -23,4 +23,10 @@ class Jazigo extends Model
     {
         return $this->belongsTo(Quadra::class);
     }
+
+    // Relacionamento com Sepultamento
+    public function sepultamentos()
+    {
+        return $this->hasMany(Sepultamento::class);
+    }
 }

@@ -3,44 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jazigo;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreJazigoRequest;
+use App\Http\Requests\UpdateJazigoRequest;
 
 class JazigoController extends Controller
 {
     public function index()
     {
-        return Jazigo::with('quadra.cemiterio')->get();
+        return Jazigo::with('quadra.cemiterio', 'sepultamentos')->get();
     }
 
-    public function store(Request $request)
+    public function store(StoreJazigoRequest $request)
     {
-        $data = $request->validate([
-            'quadra_id' => 'required|exists:quadra,id',
-            'numero' => 'required|string|max:50',
-            'tipo' => 'required|string|max:50',
-            'disponivel' => 'boolean',
-        ]);
-
-        $jazigo = Jazigo::create($data);
+        $jazigo = Jazigo::create($request->validated());
 
         return response()->json($jazigo, 201);
     }
 
     public function show(Jazigo $jazigo)
     {
-        return $jazigo->load('quadra.cemiterio');
+        return $jazigo->load('quadra.cemiterio', 'sepultamentos');
     }
 
-    public function update(Request $request, Jazigo $jazigo)
+    public function update(UpdateJazigoRequest $request, Jazigo $jazigo)
     {
-        $data = $request->validate([
-            'quadra_id' => 'sometimes|required|exists:quadra,id',
-            'numero' => 'sometimes|required|string|max:50',
-            'tipo' => 'sometimes|required|string|max:50',
-            'disponivel' => 'boolean',
-        ]);
-
-        $jazigo->update($data);
+        $jazigo->update($request->validated());
 
         return response()->json($jazigo);
     }

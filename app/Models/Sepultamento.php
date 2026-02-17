@@ -24,4 +24,16 @@ class Sepultamento extends Model
     {
         return $this->belongsTo(Jazigo::class);
     }
+
+    // Acessar Quadra através de Jazigo
+    public function getQuadraAttribute()
+    {
+        return $this->jazigo?->quadra;
+    }
+
+    // Acessar Cemiterio através de Jazigo->Quadra
+    public function getCemiterioAttribute()
+    {
+        return $this->jazigo?->quadra?->cemiterio;
+    }
 }
