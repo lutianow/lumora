@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('sepultamento', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('jazigo_id')->constrained('jazigo');
+            $table->string('nome_falecido');
+            $table->date('data_nascimento')->nullable();
+            $table->date('data_falecimento');
+            $table->text('observacoes')->nullable();
             $table->timestamps();
         });
     }

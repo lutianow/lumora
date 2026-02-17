@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('quadra', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('cemiterio_id')->constrained('cemiterio');
+            $table->string('nome');
+            $table->string('descricao')->nullable();
             $table->timestamps();
         });
     }

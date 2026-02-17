@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('jazigo', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('quadra_id')->constrained('quadra');
+            $table->string('numero');
+            $table->string('tipo');
+            $table->boolean('disponivel')->default(true);
             $table->timestamps();
         });
     }
