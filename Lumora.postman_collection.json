@@ -1,0 +1,349 @@
+{
+  "info": {
+    "_postman_id": "lumora-api",
+    "name": "Lumora API - Sistema de Cemitério",
+    "description": "Collection com todos os endpoints da API de Cemitério",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Cemitérios",
+      "item": [
+        {
+          "name": "Listar cemitérios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/cemiterios",
+              "host": ["{{base_url}}"],
+              "path": ["api", "cemiterios"]
+            }
+          }
+        },
+        {
+          "name": "Criar cemitério",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Cemitério Central\",\n  \"endereco\": \"Rua das Flores, 123\",\n  \"cidade\": \"São Paulo\",\n  \"estado\": \"SP\",\n  \"cep\": \"01310-100\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/cemiterios",
+              "host": ["{{base_url}}"],
+              "path": ["api", "cemiterios"]
+            }
+          }
+        },
+        {
+          "name": "Ver cemitério",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/cemiterios/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "cemiterios", "1"]
+            }
+          }
+        },
+        {
+          "name": "Atualizar cemitério",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Cemitério Central Atualizado\",\n  \"endereco\": \"Rua das Flores, 456\",\n  \"cidade\": \"São Paulo\",\n  \"estado\": \"SP\",\n  \"cep\": \"01310-200\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/cemiterios/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "cemiterios", "1"]
+            }
+          }
+        },
+        {
+          "name": "Deletar cemitério",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/cemiterios/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "cemiterios", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Quadras",
+      "item": [
+        {
+          "name": "Listar quadras",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/quadras",
+              "host": ["{{base_url}}"],
+              "path": ["api", "quadras"]
+            }
+          }
+        },
+        {
+          "name": "Criar quadra",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cemiterio_id\": 1,\n  \"nome\": \"Quadra A\",\n  \"descricao\": \"Quadra com 50 jazigos\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/quadras",
+              "host": ["{{base_url}}"],
+              "path": ["api", "quadras"]
+            }
+          }
+        },
+        {
+          "name": "Ver quadra",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/quadras/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "quadras", "1"]
+            }
+          }
+        },
+        {
+          "name": "Atualizar quadra",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Quadra A Premium\",\n  \"descricao\": \"Quadra com 100 jazigos\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/quadras/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "quadras", "1"]
+            }
+          }
+        },
+        {
+          "name": "Deletar quadra",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/quadras/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "quadras", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Jazigos",
+      "item": [
+        {
+          "name": "Listar jazigos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/jazigos",
+              "host": ["{{base_url}}"],
+              "path": ["api", "jazigos"]
+            }
+          }
+        },
+        {
+          "name": "Criar jazigo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quadra_id\": 1,\n  \"numero\": \"A-001\",\n  \"tipo\": \"simples\",\n  \"disponivel\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/jazigos",
+              "host": ["{{base_url}}"],
+              "path": ["api", "jazigos"]
+            }
+          }
+        },
+        {
+          "name": "Ver jazigo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/jazigos/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "jazigos", "1"]
+            }
+          }
+        },
+        {
+          "name": "Atualizar jazigo",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"disponivel\": false\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/jazigos/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "jazigos", "1"]
+            }
+          }
+        },
+        {
+          "name": "Deletar jazigo",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/jazigos/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "jazigos", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sepultamentos",
+      "item": [
+        {
+          "name": "Listar sepultamentos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/sepultamentos",
+              "host": ["{{base_url}}"],
+              "path": ["api", "sepultamentos"]
+            }
+          }
+        },
+        {
+          "name": "Criar sepultamento",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jazigo_id\": 1,\n  \"nome_falecido\": \"João Silva\",\n  \"data_nascimento\": \"1950-03-15\",\n  \"data_falecimento\": \"2026-02-10\",\n  \"observacoes\": \"Falecimento natural\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/sepultamentos",
+              "host": ["{{base_url}}"],
+              "path": ["api", "sepultamentos"]
+            }
+          }
+        },
+        {
+          "name": "Ver sepultamento",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/sepultamentos/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "sepultamentos", "1"]
+            }
+          }
+        },
+        {
+          "name": "Atualizar sepultamento",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"observacoes\": \"Falecimento natural - Sepultado em cerimônia\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/sepultamentos/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "sepultamentos", "1"]
+            }
+          }
+        },
+        {
+          "name": "Deletar sepultamento",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/sepultamentos/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "sepultamentos", "1"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost",
+      "type": "string"
+    }
+  ]
+}
