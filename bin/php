@@ -1,0 +1,3 @@
+#!/bin/bash
+# Wrapper para rodar comandos PHP via Docker
+docker compose exec app php "$@"

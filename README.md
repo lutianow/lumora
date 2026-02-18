@@ -1,3 +1,78 @@
+# pgAdmin via Docker
+
+Você pode acessar o banco de dados Postgres facilmente pelo navegador usando o pgAdmin em container:
+
+1. Suba o serviço pgAdmin junto com os outros containers:
+
+	```bash
+	docker compose up -d pgadmin
+	```
+
+2. Acesse http://localhost:5050 no navegador.
+	- Login: admin@lumora.local
+	- Senha: admin123
+
+3. Para conectar ao banco:
+	- Host: db
+	- Porta: 5432
+	- Usuário: lumora
+	- Senha: secret
+	- Database: lumora
+
+O host "db" funciona porque os containers estão na mesma rede interna do Docker Compose.
+
+---
+# Comandos utilitários via Docker
+
+Scripts prontos para facilitar o uso de ferramentas do projeto sem precisar instalar nada localmente:
+
+- `./bin/php` — roda comandos PHP no container
+- `./bin/composer` — roda Composer no container
+- `./bin/psql` — acessa o banco Postgres no container
+
+Exemplos:
+
+```bash
+./bin/php -v
+./bin/composer install
+./bin/psql
+```
+
+---
+# Frontend (Vue 3 + Vite)
+
+## Rodando o frontend em modo desenvolvimento (hot reload)
+
+Para ver as alterações do frontend instantaneamente ao salvar arquivos `.vue` ou `.js`, rode o Vite em modo desenvolvimento usando Docker:
+
+```bash
+./bin/npm-dev
+```
+
+Isso irá:
+- Instalar as dependências do Node (caso necessário)
+- Rodar o servidor Vite em modo dev (porta 5173)
+- Permitir hot reload no navegador (acesse http://localhost:5173)
+
+> Dica: Deixe esse comando rodando em um terminal separado enquanto desenvolve o frontend.
+
+Se acessar http://localhost:5173 e ver "not found", certifique-se de que o script está rodando.
+
+## Rodando o build de produção
+
+Para gerar os arquivos de produção (que serão servidos pelo Laravel/Nginx):
+
+```bash
+docker run --rm -it \
+	-v "$PWD":/app \
+	-w /app \
+	node:18 \
+	sh -c "npm install && npm run build"
+```
+
+Os arquivos serão gerados em `public/build`.
+
+---
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

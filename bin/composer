@@ -1,0 +1,3 @@
+#!/bin/bash
+# Wrapper para rodar Composer via Docker
+docker compose exec app composer "$@"

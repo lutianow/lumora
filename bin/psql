@@ -1,0 +1,3 @@
+#!/bin/bash
+# Wrapper para rodar psql (Postgres CLI) via Docker
+docker compose exec db psql -U lumora -d lumora "$@"
